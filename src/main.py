@@ -1,8 +1,6 @@
-# pyChorder V0.1C -
-# Todo.  1 - Supports only Capital characters so far.  2 - Add more modes.
+# pyChorder V0.1D - With user input
 
-# Regex for later 
-import re
+# Todo.  1 - Supports only Capital characters so far.  2 - Add more modes. 3 - Refactor.  4 - Add all formulas and alphabets to json? 5 - Rename some variales and function parameters
 
 # index 0 Sharps, index 1 Flats
 musicalAlphabet = [['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'], ['A','B♭', 'B', 'C', 'D♭', 'D', 'E♭', 'E', 'F', 'G♭', 'G', 'A♭']]
@@ -18,11 +16,10 @@ minorScaleFormula = [W, H, W, W, H, W, W]
 # Chord formulas
 triadChord = [0,2,4]
 seventhChord = [0,2,4,6]
-
+ninthChord = [0,2,4,6,8]
 rootScale = []
 
 def scaleMaker(rootNote, rootScale,  mAlphabetList, scaleFormula):
-    # W W H W W W H
     mAlphabetLength = (len(mAlphabetList)-1) #  With respect to indicies
     rootNoteIndex = mAlphabetList.index(rootNote)
     rootScale.append(mAlphabetList[rootNoteIndex])
@@ -40,10 +37,8 @@ def scaleMaker(rootNote, rootScale,  mAlphabetList, scaleFormula):
 def chordMaker(rootScale, chordFormula, scaleFormula):
     print(f"root note: {rootScale[0]} \nNotes:")
     chordFormulaLen = len(chordFormula)
-
     for i in chordFormula:
         print(rootScale[i])
-
     if (chordFormulaLen == 3):
             print(f"Chord: {rootScale[0]}")
     elif (chordFormulaLen == 4 and scaleFormula == minorScaleFormula):
@@ -52,9 +47,15 @@ def chordMaker(rootScale, chordFormula, scaleFormula):
             print(f"Chord: {rootScale[0]}maj7")
     print("\n")
 
-# Only capital!
-rootNote = 'C'                  # # or ♭ (0#, 1♭)    minor or major
-scaleMaker(rootNote, rootScale,  musicalAlphabet[0], majorScaleFormula)
-chordMaker(rootScale, seventhChord, majorScaleFormula)#< Same variable^
+# Todo. 1-Choose between accidentals. 2-Error handling if a note dosent exist (forex E#)
+# Only capital!     -- HARDCODED -- FIX THIS, WORKS FOR NOW
+rootNote = input("Enter your wanted root note ( Capital, accidentals: # or ♭)")
+usrScale = input("[Major] or [Minor] Scale: ")
+if(usrScale == "Major"):
+    scaleMaker(rootNote, rootScale, musicalAlphabet[0], majorScaleFormula)
+if(usrScale == "Minor"):
+    scaleMaker(rootNote, rootScale, musicalAlphabet[0], minorScaleFormula)
 
-
+# Safe old way
+#scaleMaker(rootNote, rootScale,  musicalAlphabet[0], majorScaleFormula)
+#chordMaker(rootScale, seventhChord, majorScaleFormula)#< Same variable^
