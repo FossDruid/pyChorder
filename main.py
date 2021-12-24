@@ -1,9 +1,7 @@
 # pyChorder V0.1A -
 # Todo.  1 - Supports only Capital characters so far.  2 - Add minor scale and other modes.  3 - Add chord function ( Triads and 7ths)
 
-# Whole notes represented as 
-
-# For later
+# Regex for later 
 import re
 
 # index 0 Sharps, index 1 Flats
@@ -12,6 +10,7 @@ musicalAlphabet = [['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', '
 #  Whole and Half notes presented as 2 & 1, with respect to indicies
 W = 2
 H = 1
+
 def majorScale(rootNote, mAlphabetList, w, h):
     # W W H W W W H
     mAlphabetLength = (len(mAlphabetList)-1) #  With respect to indicies
