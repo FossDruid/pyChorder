@@ -1,5 +1,5 @@
-# pyChorder V0.1B -
-# Todo.  1 - Supports only Capital characters so far.  2 - Add more modes.  3 - Add chord formation function ( Triads and 7ths)
+# pyChorder V0.1A -
+# Todo.  1 - Supports only Capital characters so far.  2 - Add minor scale and other modes.  3 - Add chord function ( Triads and 7ths)
 
 # Regex for later 
 import re
@@ -11,26 +11,24 @@ musicalAlphabet = [['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', '
 W = 2
 H = 1
 
-majorScaleFormula = [W, W, H, W, W, W, H]
-minorScaleFormula = [W, H, W, W, H, W, W]
-
-def scaleMaker(rootNote, mAlphabetList, scaleFormula):
+def majorScale(rootNote, mAlphabetList, w, h):
     # W W H W W W H
     mAlphabetLength = (len(mAlphabetList)-1) #  With respect to indicies
+    majScaleFormula = [w, w, h, w, w, w, h]
     rootNoteIndex = mAlphabetList.index(rootNote)
-    rootScale = []
-    rootScale.append(mAlphabetList[rootNoteIndex])
+    rootMajScale = []
+    rootMajScale.append(mAlphabetList[rootNoteIndex])
 
     prevNoteIndex = rootNoteIndex
     # 0->6 because there are 7 notes in a major scale.
     newIndex = int
     for i in range (0,6):
-        prevNoteIndex += scaleFormula[i]
+        prevNoteIndex += majScaleFormula[i]
         if (prevNoteIndex > mAlphabetLength):
             newIndex = (prevNoteIndex - mAlphabetLength)
             prevNoteIndex = (newIndex-1)
-        rootScale.append(mAlphabetList[prevNoteIndex])
-    print(rootScale)
+        rootMajScale.append(mAlphabetList[prevNoteIndex])
+    print(rootMajScale)
 
-rootNote = 'C'
-scaleMaker(rootNote, musicalAlphabet[0], minorScaleFormula)
+rootNote = 'A#'
+majorScale(rootNote, musicalAlphabet[0], W, H)
