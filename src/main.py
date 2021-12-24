@@ -20,6 +20,7 @@ triadChord = [0,2,4]
 seventhChord = [0,2,4,6]
 
 rootScale = []
+
 def scaleMaker(rootNote, rootScale,  mAlphabetList, scaleFormula):
     # W W H W W W H
     mAlphabetLength = (len(mAlphabetList)-1) #  With respect to indicies
@@ -38,7 +39,6 @@ def scaleMaker(rootNote, rootScale,  mAlphabetList, scaleFormula):
 
 def chordMaker(rootScale, chordFormula, scaleFormula):
     print(f"root note: {rootScale[0]} \nNotes:")
-    
     chordFormulaLen = len(chordFormula)
 
     for i in chordFormula:
@@ -50,11 +50,11 @@ def chordMaker(rootScale, chordFormula, scaleFormula):
             print(f"Chord: {rootScale[0]}m7")
     elif (chordFormulaLen == 4 and scaleFormula == majorScaleFormula):
             print(f"Chord: {rootScale[0]}maj7")
-
-
     print("\n")
 
 # Only capital!
 rootNote = 'C'                  # # or ♭ (0#, 1♭)    minor or major
 scaleMaker(rootNote, rootScale,  musicalAlphabet[0], majorScaleFormula)
 chordMaker(rootScale, seventhChord, majorScaleFormula)#< Same variable^
+
+
